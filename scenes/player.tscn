@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk702gpejl8hs"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_qpptd"]
+[ext_resource type="Texture2D" uid="uid://c8ksa71w3dbhk" path="res://Textures/Main Orb.png" id="2_5gees"]
+[ext_resource type="Texture2D" uid="uid://v7yk8cm4k417" path="res://Textures/2d_lights_and_shadows_neutral_point_light.webp" id="3_6xry8"]
+[ext_resource type="Script" path="res://scripts/setLightPower.gd" id="4_oeuf5"]
+[ext_resource type="Texture2D" uid="uid://ctoqh1xsl8t15" path="res://Textures/pointer.png" id="5_rrxjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7qjh"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_qpptd")
+
+[node name="MainOrb" type="Sprite2D" parent="."]
+light_mask = 2
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_5gees")
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_e7qjh")
+
+[node name="PlayerLight" type="PointLight2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+energy = 1.5
+blend_mode = 1
+texture = ExtResource("3_6xry8")
+script = ExtResource("4_oeuf5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="deathScreen" type="Sprite2D" parent="."]
+modulate = Color(0.313726, 0.313726, 0.313726, 1)
+light_mask = 2
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_6xry8")
+
+[node name="GameOverText" type="RichTextLabel" parent="."]
+visible = false
+visibility_layer = 2
+offset_left = -90.0
+offset_top = 14.0
+offset_right = 90.0
+offset_bottom = 37.0
+text = "PRESS ENTER TO START"
+
+[node name="Title" type="RichTextLabel" parent="."]
+visible = false
+visibility_layer = 2
+offset_left = -176.5
+offset_top = -147.0
+offset_right = 178.5
+offset_bottom = -92.0
+theme_override_font_sizes/normal_font_size = 39
+theme_override_font_sizes/bold_italics_font_size = 0
+text = "Consumer of Light"
+
+[node name="CongratsText" type="RichTextLabel" parent="."]
+visible = false
+visibility_layer = 2
+offset_left = -200.0
+offset_top = 112.0
+offset_right = 201.0
+offset_bottom = 196.0
+theme_override_font_sizes/normal_font_size = 29
+theme_override_font_sizes/bold_italics_font_size = 0
+text = "Congratulations on winning!
+          Game by entityJY"
+
+[node name="startingLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(100, 100)
+blend_mode = 1
+texture = ExtResource("3_6xry8")
+
+[node name="Pointer" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("5_rrxjc")
+offset = Vector2(2.08165e-12, 100)
